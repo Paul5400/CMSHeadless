@@ -29,13 +29,9 @@ echo -e "\n4. Praticien avec sa spécialité (libellé):"
 curl -s -H "Authorization: Bearer $TOKEN" "$BASE_URL/items/praticien?fields=*,specialite_id.libelle" | jq .
 
 echo -e "\n5. Structure et liste des praticiens (nom, prenom):"
-# Note: Requires correct aliasing or filter. We check if structure->praticien works. 
-# Usually Directus adds the reverse alias if we configured it correctly, or we use deep search.
-# If O2M alias 'praticiens' exists on structure:
+
 curl -s -H "Authorization: Bearer $TOKEN" "$BASE_URL/items/structure?fields=*,praticiens.nom,praticiens.prenom" | jq .
-# If 'praticiens' alias does not exist, this might fail or return null. 
-# Attempting alternative via 'praticien' endpoint if needed, but the request implies querying structure.
-# Let's assume for now we might need to manually ensure the alias exists or accept the limitation.
+
 
 echo -e "\n6. Structure et liste des praticiens avec spécialité:"
 curl -s -H "Authorization: Bearer $TOKEN" "$BASE_URL/items/structure?fields=*,praticiens.nom,praticiens.prenom,praticiens.specialite_id.libelle" | jq .
