@@ -14,7 +14,7 @@ if [ -z "$TOKEN" ]; then
     exit 1
 fi
 
-echo "Token obtained."
+echo "Token obtenu."
 
 echo -e "\n1. Liste des praticiens:"
 curl -s -H "Authorization: Bearer $TOKEN" "$BASE_URL/items/praticien" | jq .
